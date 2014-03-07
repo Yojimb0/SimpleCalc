@@ -1,0 +1,52 @@
+/* SASS
+---------------------------------------*/
+$r: hsl(360, 50%, 90%);
+$v: hsl(100, 50%, 90%);
+$b: hsl(180, 50%, 90%);
+$j: hsl( 60, 50%, 90%);
+$g: #ddd;
+
+
+@import 'normalize';
+
+*, *:before, *:after {-moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;}
+body{font-family: monospace;max-width:500px;margin:auto;}
+
+/* SECTION LAYOUTS
+---------------------------------------*/
+section{padding: 2vh;}
+section.results{height:50vh;background: #eee;padding: 5vh;}
+section.operation{height:10vh;background: #ddd;}
+section.buttons{height:40vh;background: #9dd2ea;}
+
+/* FLEXING
+---------------------------------------*/
+section.buttons{display: flex;flex-flow: row wrap;justify-content: space-between;align-items: flex-start;}
+section.buttons span{display:flex;flex:0 1 23%;justify-content: center;align-items: center;}
+
+/* OTHER
+---------------------------------------*/
+section.results{overflow: auto;font-size:4vh;}
+section.results span{display: block;}
+section.results strong{display: block;text-align: right;border-bottom:1px solid #ddd;}
+section.operation input{display: block;height:6vh;background: #fff;border:none;width: 100%;outline:0;font-size:4vh;}
+
+section.buttons span{height:16%;border-radius:5px;font-size:4vh;text-align: center;background: #eee;}
+	
+section.buttons span.g{background: $g; box-shadow: 0 2px 1px darken($g, 20);}
+section.buttons span.r{background: $r; box-shadow: 0 2px 1px darken($r, 20);}
+section.buttons span.v{background: $v; box-shadow: 0 2px 1px darken($v, 20);}
+section.buttons span.b{background: $b; box-shadow: 0 2px 1px darken($b, 20);}
+section.buttons span.j{background: $j; box-shadow: 0 2px 1px darken($j, 20);}
+
+section.buttons span.g:hover{background: darken($g, 10);}
+section.buttons span.r:hover{background: darken($r, 10);}
+section.buttons span.v:hover{background: darken($v, 10);}
+section.buttons span.b:hover{background: darken($b, 10);}
+section.buttons span.j:hover{background: darken($j, 10);}
+
+section.buttons span.g:active{background: darken($g, 10);box-shadow:none;transform: translateY(2px)}
+section.buttons span.r:active{background: darken($r, 10);box-shadow:none;transform: translateY(2px)}
+section.buttons span.v:active{background: darken($v, 10);box-shadow:none;transform: translateY(2px)}
+section.buttons span.b:active{background: darken($b, 10);box-shadow:none;transform: translateY(2px)}
+section.buttons span.j:active{background: darken($j, 10);box-shadow:none;transform: translateY(2px)}
