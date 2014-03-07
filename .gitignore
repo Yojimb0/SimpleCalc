@@ -18,5 +18,6 @@ configPrivate.js
 
 *.sublime-project
 *.sublime-workspace
+sftp-config
 
 .DS_Store
