@@ -1,49 +1,76 @@
-var keys = [].slice.call(document.querySelectorAll('.buttons span'));
-var results = document.querySelector('.results');
-var operationHTML = document.querySelector('.operation input');
-var operationJS = '';
-var lastResult = 0;
+var YC = {
+	$keys: [].slice.call(document.querySelectorAll('.buttons span')),
+	$results: document.querySelector('.results'),
+	$operationHTML: document.querySelector('.operation input'),
+	$body: document.body,
+	operationJS: '',
+	lastResult: 0
+};
 
-keys.forEach(function(key){
+
+/* FUNCTIONS
+---------------------------------------*/
+YC.addKey = function(v){
+	if(v === '='){
+		YC.calculate();
+	}else if(v === 'ANS'){
+		YC.operationJS += YC.lastResult;
+		YC.$operationHTML.value += YC.lastResult;
+	}else if(v === 'C'){
+		YC.clear();
+	}else{
+		YC.operationJS += v;
+		YC.$operationHTML.value += v;
+	}
+};
+
+YC.calculate = function(){
+	YC.lastResult = eval(YC.operationJS); // jshint ignore:line
+	YC.$results.innerHTML += '<span>'+YC.$operationHTML.value+'</span>';
+	YC.$results.innerHTML += '<strong>'+YC.lastResult+'</strong>';
+	YC.operationJS = '';
+	YC.$operationHTML.value = '';
+	YC.$results.scrollTop = 10000;
+};
+YC.clear = function(){
+	YC.operationJS = '';
+	YC.$operationHTML.value = '';
+};
+
+YC.updateOnlineStatus = function() {
+  var condition = navigator.onLine ? "ONLINE" : "OFFLINE";
+  YC.$body.setAttribute("class", condition);
+  console.log('Status ',condition);
+};
+
+
+/* BINDINGS
+---------------------------------------*/
+window.addEventListener("online", function(){
+	YC.updateOnlineStatus();
+});
+window.addEventListener("offline", function(){
+	YC.updateOnlineStatus();
+});
+
+YC.$keys.forEach(function(key){
 	key.addEventListener("click", function(e){
-		console.log('lol', e);
-		addKey(e.target.getAttribute('value'));
+		YC.addKey(e.target.getAttribute('value'));
 	}, false);
 });
 
-operationHTML.addEventListener('keyup', function(e){
+YC.$operationHTML.addEventListener('keyup', function(e){
 	if(e.keyCode === 13){
-		calculate();
+		YC.calculate();
 	}else if(e.keyCode === 27){
-		clear();
+		YC.clear();
 	}else{
-		operationJS = operationHTML.value;
+		YC.operationJS = YC.$operationHTML.value;
 	}
 }, false);
 
-function addKey(v){
-	if(v === '='){
-		calculate();
-	}else if(v === 'ANS'){
-		operationJS += lastResult;
-		operationHTML.value += lastResult;
-	}else if(v === 'C'){
-		clear();
-	}else{
-		operationJS += v;
-		operationHTML.value += v;
-	}
-	
-}
+YC.updateOnlineStatus();
 
-function calculate(){
-	lastResult = eval(operationJS); // jshint ignore:line
-	results.innerHTML += '<span>'+operationHTML.value+'</span>';
-	results.innerHTML += '<strong>'+lastResult+'</strong>';
-	operationJS = '';
-	operationHTML.value = '';
-}
-function clear(){
-	operationJS = '';
-	operationHTML.value = '';
-}
+
+
+

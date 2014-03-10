@@ -6,6 +6,7 @@ module.exports = (grunt) ->
 	grunt.loadNpmTasks 'grunt'
 	grunt.loadNpmTasks 'grunt-cli'
 	grunt.loadNpmTasks 'grunt-contrib-watch'
+	grunt.loadNpmTasks 'grunt-contrib-connect'
 
 	grunt.loadNpmTasks 'grunt-contrib-jshint'
 	grunt.loadNpmTasks 'grunt-contrib-uglify'
@@ -23,12 +24,19 @@ module.exports = (grunt) ->
 				livereload: true
 			sass:
 				files: 'css_src/**/*.scss'
-				tasks: ['sass', 'autoprefixer']
+				tasks: ['sass', 'autoprefixer', 'manifest']
 			html:
 				files: ['*.html']
+				tasks: ['manifest']
 			javascript:
 				files: 'js_src/*.js'
-				tasks: ['jshint', 'uglify']
+				tasks: ['jshint', 'uglify', 'manifest']
+
+		connect:
+			all:
+				options:
+					port: 9000
+					hostname: 'localhost'
 
 		jshint:
 			options:
@@ -64,7 +72,13 @@ module.exports = (grunt) ->
 			all: 
 				options: 
 					basePath: '../'
-					cache: ['js/main.js', 'css/style.css', 'index.html',]
+					cache: [
+						'js/main.js',
+						'css/style.css',
+						'index.html',
+						'favicon.png',
+						'favicon.ico'
+					]
 					network: ['http://*', 'https://*']
 					# fallback: ['/ /offline.html']
 					preferOnline: false
@@ -79,8 +93,7 @@ module.exports = (grunt) ->
 
 
 
-	grunt.registerTask 'default', ['sass', 'autoprefixer', 'jshint', 'uglify', 'watch']
-	grunt.registerTask 'build', ['sass', 'autoprefixer', 'jshint', 'uglify', 'manifest']
+	grunt.registerTask 'default', ['sass', 'autoprefixer', 'jshint', 'uglify', 'manifest', 'connect', 'watch']
 
 
 

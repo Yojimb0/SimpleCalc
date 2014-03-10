@@ -3,6 +3,7 @@
     "grunt": "latest",
     "grunt-cli": "latest",
     "grunt-contrib-watch": "latest",
+    "grunt-contrib-connect": "latest",
     "grunt-contrib-jshint": "latest",
     "grunt-contrib-sass": "latest",
     "grunt-autoprefixer": "latest",

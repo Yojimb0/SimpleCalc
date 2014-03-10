@@ -130,15 +130,17 @@ td, th { padding: 0; }
 
 body { font-family: monospace; max-width: 500px; margin: auto; }
 
+body.ONLINE { font-family: 'Josefin Sans', monospace; }
+
 /* SECTION LAYOUTS
 ---------------------------------------*/
 section { padding: 2vh; }
 
-section.results { height: 50vh; background: #eee; padding: 5vh; }
+section.results { height: 40vh; background: #eee; padding: 5vh; }
 
 section.operation { height: 10vh; background: #ddd; }
 
-section.buttons { height: 40vh; background: #9dd2ea; }
+section.buttons { height: 50vh; background: #9dd2ea; }
 
 /* FLEXING
 ---------------------------------------*/
@@ -148,7 +150,7 @@ section.buttons span { display: -webkit-box; display: -webkit-flex; display: -ms
 
 /* OTHER
 ---------------------------------------*/
-section.results { overflow: auto; font-size: 4vh; }
+section.results { overflow: auto; font-size: 3vh; }
 
 section.results span { display: block; }
 
