@@ -1,4 +1,4 @@
-YojiCalc
+SimpleCalc
 ========
 
 Calculator offline webapp
