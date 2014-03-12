@@ -126,6 +126,12 @@ table { border-collapse: collapse; border-spacing: 0; }
 
 td, th { padding: 0; }
 
+.cf:before, .cf:after { content: " "; display: table; }
+
+.cf:after { clear: both; }
+
+.cf { *zoom: 1; }
+
 *, *:before, *:after { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
 
 body { font-family: monospace; max-width: 500px; margin: auto; }
@@ -136,7 +142,7 @@ body.ONLINE { font-family: 'Josefin Sans', monospace; }
 ---------------------------------------*/
 section { padding: 2vh; }
 
-section.results { height: 40vh; background: #eee; padding: 5vh; }
+section.results { height: 40vh; background: #eee; padding: 0vh; }
 
 section.operation { height: 10vh; background: #ddd; }
 
@@ -152,9 +158,17 @@ section.buttons span { display: -webkit-box; display: -webkit-flex; display: -ms
 ---------------------------------------*/
 section.results { overflow: auto; font-size: 3vh; }
 
-section.results span { display: block; }
+section.results div { padding: 2vh; }
 
-section.results strong { display: block; text-align: right; border-bottom: 1px solid #ddd; }
+section.results div:nth-child(even) { background: #ebebeb; }
+
+section.results div.error { color: #900; }
+
+section.results div.welcome { text-align: center; padding: 4vh 2vh; }
+
+section.results span { display: block; float: left; }
+
+section.results strong { display: block; float: right; }
 
 section.operation input { display: block; height: 6vh; background: #fff; border: none; width: 100%; outline: 0; font-size: 4vh; }
 

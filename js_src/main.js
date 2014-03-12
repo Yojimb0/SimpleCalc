@@ -25,9 +25,37 @@ YC.addKey = function(v){
 };
 
 YC.calculate = function(){
-	YC.lastResult = eval(YC.operationJS); // jshint ignore:line
-	YC.$results.innerHTML += '<span>'+YC.$operationHTML.value+'</span>';
-	YC.$results.innerHTML += '<strong>'+YC.lastResult+'</strong>';
+	var result;
+	var resultHTML = '';
+	
+	// Test if forbidden characters
+	if(!YC.operationJS.match(/^[+\-0-9(). *\/]+$/)){
+		YC.$results.innerHTML += '<div class="error cf"><strong>Character not allowed</strong></div>';
+		YC.$results.scrollTop = 10000;
+		return false;
+	}
+
+	// Try the calculation to catch errors
+	try{
+		result = eval(YC.operationJS); // jshint ignore:line
+	}catch(err){
+		YC.$results.innerHTML += '<div class="error cf"><strong>Can\'t calculate expression</strong></div>';
+		YC.$results.scrollTop = 10000;
+		return false;
+	}
+
+	// Avoid undefined
+	if(typeof result === 'undefined'){
+		return false;
+	}
+
+	// Display
+	YC.lastResult = result;
+	resultHTML += '<div class="cf">';
+	resultHTML += '	<span>'+YC.$operationHTML.value.replace('*','&times;').replace('/','÷')+'</span>';
+	resultHTML += '	<strong>'+YC.lastResult+'</strong>';
+	resultHTML += '</div>';
+	YC.$results.innerHTML += resultHTML;
 	YC.operationJS = '';
 	YC.$operationHTML.value = '';
 	YC.$results.scrollTop = 10000;
