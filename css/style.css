@@ -134,9 +134,9 @@ td, th { padding: 0; }
 
 *, *:before, *:after { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
 
-body { font-family: monospace; max-width: 500px; margin: auto; }
+body { font-family: 'Verdana', monospace; max-width: 500px; margin: auto; }
 
-body.ONLINE { font-family: 'Josefin Sans', monospace; }
+body.ONLINE { font-family: 'Josefin Sans', 'Verdana', monospace; }
 
 /* SECTION LAYOUTS
 ---------------------------------------*/
